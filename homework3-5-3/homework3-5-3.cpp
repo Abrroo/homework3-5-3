@@ -17,7 +17,7 @@ public:
     {
         return 1;
     }
-    int get_count_sides()
+    virtual int get_count_sides()
     {
         return count_side_figure;
     }
@@ -54,7 +54,7 @@ public:
         int x = arr[i];
         return x;
     }
-    int get_count_sides()
+    int get_count_sides() override
     {
         return count_side_triangle;
     }
@@ -163,7 +163,9 @@ public:
     }
     std::string validation()
     {
-        if ((a == c == b && A == C == B == 60) && Triangle::validation() == "Правильная") { return "Правильная"; }
+        if ((a == c && c == b) && 
+            ((A == C) && (C == B) && (B == 60)) && 
+            Triangle::validation() == "Правильная") { return "Правильная"; }
         else { return "Неправильная"; }
     }
 
@@ -198,7 +200,7 @@ public:
         int x = arr[i];
         return x;
     }
-    int get_count_sides()
+    int get_count_sides() override
     {
         return count_side_quadrangle;
     }
@@ -241,7 +243,9 @@ public:
     }
     std::string validation()
     {
-        if (((a == c && b == d) && (A == B == C == D == 90)) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
+        if ((a == c && b == d) && 
+            ((A == B) && (B == C) && (C == D) && (D == 90)) && 
+            Quadrangle::validation() == "Правильная") { return "Правильная"; }
         else { return "Неправильная"; }
     }
 };
@@ -277,7 +281,9 @@ public:
     }
     std::string validation() override
     {
-        if (((a == c == b == d) && (A == B == C == D == 90)) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
+        if (((a == c) && (c == b) && (b == d)) && 
+            ((A == B) && (B == C) && (C == D) && (D == 90)) && 
+            Quadrangle::validation() == "Правильная") { return "Правильная"; }
         else { return "Неправильная"; }
     }
 
@@ -349,7 +355,7 @@ public:
     }
     std::string validation()
     {
-        if (((a == c == b == d) && (A == C && B == D)) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
+        if ((a == c) && (c == b) && (b == d) && (A == C) && (B == D) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
         else { return "Неправильная"; }
     }
 
@@ -359,16 +365,20 @@ void get_info(Figure* figure)
 {
     std::cout << figure->get_name_figure() << std::endl;
     std::cout << figure->validation() << std::endl;
-    std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
-    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
-    {
-        std::cout << " d=" << figure->get_sides_angles(3);
-    }
-    std::cout << std::endl;
-    std::cout << "Углы: A=" << figure->get_sides_angles(4) << " B=" << figure->get_sides_angles(5) << " C=" << figure->get_sides_angles(6);
-    if (figure->get_sides_angles(3) != 0 && figure->get_sides_angles(7) != 0)
-    {
-        std::cout << " D=" << figure->get_sides_angles(7);
+    std::cout << figure->get_count_sides();
+    if (figure->get_count_sides() != 0) {
+        std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
+        if (figure->get_count_sides() == 4)
+        {
+            std::cout << " d=" << figure->get_sides_angles(3);
+        }
+        std::cout << std::endl;
+        std::cout << "Углы: A=" << figure->get_sides_angles(4) << " B=" << figure->get_sides_angles(5) << " C=" << figure->get_sides_angles(6);
+        if (figure->get_count_sides() == 4)
+        {
+            std::cout << " D=" << figure->get_sides_angles(7);
+        }
+
     }
     std::cout << std::endl << std::endl;
 }
@@ -387,13 +397,13 @@ int main()
     Iso_triangle iso_triangle       (10, 20, 10,     50, 60, 50);       // |
     Equil_triangle equil_triangle   (30, 30, 30,     60, 60, 60);       // |
 
-    Quadrangle quadrangle           (10, 20, 30, 40, 90, 90, 90, 90);   // |
+    Quadrangle quadrangle           (10, 20, 30, 40, 50, 60, 70, 80);   // |
     Rectangle rectangle             (10, 20, 10, 20, 90, 90, 90, 90);   // |
     Square square                   (20, 20, 20, 20, 90, 90, 90, 90);   // | Четырехуголники
     Parallelogram parallelogram     (20, 30, 20, 30, 30, 40, 30, 40);   // |
     Rhombus rhombus                 (30, 30, 30, 30, 30, 40, 30, 40);   // |
 
-    
+    get_info(&figure);
     get_info(&triangle);
     get_info(&right_triangle);
     get_info(&iso_triangle);
