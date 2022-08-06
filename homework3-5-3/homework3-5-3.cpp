@@ -95,7 +95,7 @@ public:
     }
     bool validation()
     {
-        if (C == 90 && Triangle::validation() == "Правильная") { return true; }
+        if (C == 90 && Triangle::validation() == true) { return true; }
         else { return false; }
     }
 
@@ -129,7 +129,7 @@ public:
     }
     bool validation()
     {
-        if ((a == c && A == C) && Triangle::validation() == "Правильная") { return true; }
+        if ((a == c && A == C) && (Triangle::validation() == true)) { return true; }
         else { return false; }
     }
 
@@ -165,7 +165,7 @@ public:
     {
         if ((a == c && c == b) && 
             ((A == C) && (C == B) && (B == 60)) && 
-            Triangle::validation() == "Правильная") { return true; }
+            Triangle::validation() == true) { return true; }
         else { return false; }
     }
 
@@ -245,7 +245,7 @@ public:
     {
         if ((a == c && b == d) && 
             ((A == B) && (B == C) && (C == D) && (D == 90)) && 
-            Quadrangle::validation() == "Правильная") { return true; }
+            Quadrangle::validation() == true) { return true; }
         else { return false; }
     }
 };
@@ -283,7 +283,7 @@ public:
     {
         if (((a == c) && (c == b) && (b == d)) && 
             ((A == B) && (B == C) && (C == D) && (D == 90)) && 
-            Quadrangle::validation() == "Правильная") { return true; }
+            Quadrangle::validation() == true) { return true; }
         else { return false; }
     }
 
@@ -319,7 +319,7 @@ public:
     }
     bool validation()
     {
-        if (((a == c && b == d) && (A == C && B == D)) && Quadrangle::validation() == "Правильная") { return true; }
+        if (((a == c && b == d) && (A == C && B == D)) && Quadrangle::validation() == true) { return true; }
         else { return false; }
     }
 
@@ -355,7 +355,7 @@ public:
     }
     bool validation()
     {
-        if ((a == c) && (c == b) && (b == d) && (A == C) && (B == D) && Quadrangle::validation() == "Правильная") { return true; }
+        if ((a == c) && (c == b) && (b == d) && (A == C) && (B == D) && Quadrangle::validation() == true) { return true; }
         else { return false; }
     }
 
@@ -364,8 +364,10 @@ public:
 void get_info(Figure* figure)
 {
     std::cout << figure->get_name_figure() << std::endl;
-    std::cout << figure->validation() = true ? "Правильная": "Неправильная" << std::endl;
-    std::cout << figure->get_count_sides();
+    if (figure->validation() == true) { std::cout << "Правильная" << std::endl; } 
+    else {                              std::cout << "Неправильная" << std::endl; }
+
+    std::cout << "Кол-во сторон: " << figure->get_count_sides() << std::endl;
     if (figure->get_count_sides() != 0) {
         std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
         if (figure->get_count_sides() == 4)
