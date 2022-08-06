@@ -21,10 +21,10 @@ public:
     {
         return count_side_figure;
     }
-    virtual std::string validation()
+    virtual bool validation()
     {
-        if (get_count_sides() == 0) { return "Правильная"; }
-        else { return "Неправильная"; }
+        if (get_count_sides() == 0) { return true; }
+        else { return false; }
     }
 };
 
@@ -59,10 +59,10 @@ public:
         return count_side_triangle;
     }
 
-    std::string validation() override
+    bool validation() override
     {
-        if (get_count_sides() == 3 && A+B+C == 180) { return "Правильная"; }
-        else { return "Неправильная"; }
+        if (get_count_sides() == 3 && (A + B + C) == 180) { return true; }
+        else { return false; }
     }
 
 };
@@ -93,10 +93,10 @@ public:
         int x = arr[i];
         return x;
     }
-    std::string validation()
+    bool validation()
     {
-        if (C == 90 && Triangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+        if (C == 90 && Triangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -127,10 +127,10 @@ public:
         int x = arr[i];
         return x;
     }
-    std::string validation()
+    bool validation()
     {
-        if ((a == c && A == C) && Triangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+        if ((a == c && A == C) && Triangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -161,12 +161,12 @@ public:
         int x = arr[i];
         return x;
     }
-    std::string validation()
+    bool validation()
     {
         if ((a == c && c == b) && 
             ((A == C) && (C == B) && (B == 60)) && 
-            Triangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+            Triangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -204,10 +204,10 @@ public:
     {
         return count_side_quadrangle;
     }
-    std::string validation() override
+    bool validation() override
     {
-        if (( A + C + B + D == 360) && get_count_sides() == 4) { return "Правильная"; }
-        else { return "Неправильная"; }
+        if (( (A + C + B + D) == 360) && get_count_sides() == 4) { return true; }
+        else { return false; }
     }
 
 };
@@ -241,12 +241,12 @@ public:
         return x;
 
     }
-    std::string validation()
+    bool validation()
     {
         if ((a == c && b == d) && 
             ((A == B) && (B == C) && (C == D) && (D == 90)) && 
-            Quadrangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+            Quadrangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 };
 
@@ -279,12 +279,12 @@ public:
         return x;
 
     }
-    std::string validation() override
+    bool validation() override
     {
         if (((a == c) && (c == b) && (b == d)) && 
             ((A == B) && (B == C) && (C == D) && (D == 90)) && 
-            Quadrangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+            Quadrangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -317,10 +317,10 @@ public:
         int x = arr[i];
         return x;
     }
-    std::string validation()
+    bool validation()
     {
-        if (((a == c && b == d) && (A == C && B == D)) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+        if (((a == c && b == d) && (A == C && B == D)) && Quadrangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -353,10 +353,10 @@ public:
         int x = arr[i];
         return x;
     }
-    std::string validation()
+    bool validation()
     {
-        if ((a == c) && (c == b) && (b == d) && (A == C) && (B == D) && Quadrangle::validation() == "Правильная") { return "Правильная"; }
-        else { return "Неправильная"; }
+        if ((a == c) && (c == b) && (b == d) && (A == C) && (B == D) && Quadrangle::validation() == "Правильная") { return true; }
+        else { return false; }
     }
 
 };
@@ -364,7 +364,7 @@ public:
 void get_info(Figure* figure)
 {
     std::cout << figure->get_name_figure() << std::endl;
-    std::cout << figure->validation() << std::endl;
+    std::cout << figure->validation() = true ? "Правильная": "Неправильная" << std::endl;
     std::cout << figure->get_count_sides();
     if (figure->get_count_sides() != 0) {
         std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
