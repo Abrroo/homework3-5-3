@@ -5,10 +5,31 @@
 class Figure
 {
 protected:
-    const int count_side_quadrangle = 4;
-    const int count_side_triangle = 3;
-    const int count_side_figure = 0;
+    const int count_side = 0;
+    int a = 0, b = 0, c = 0, d = 0;
+    int A = 0, B = 0, C = 0, D = 0;
 public:
+    Figure() {}
+    Figure(int a, int b, int c, int A, int B, int C)
+    {
+        this->a = a;
+        this->b = b;
+        this->c = c;
+        this->A = A;
+        this->B = B;
+        this->C = C;
+    }
+    Figure(int a, int b, int c, int d, int A, int B, int C, int D)
+    {
+        this->a = a;
+        this->b = b;
+        this->c = c;
+        this->d = d;
+        this->A = A;
+        this->B = B;
+        this->C = C;
+        this->D = D;
+    }
     virtual std::string get_name_figure()
     {
         return "Фигура:";
@@ -19,12 +40,39 @@ public:
     }
     virtual int get_count_sides()
     {
-        return count_side_figure;
+        return count_side;
     }
     virtual bool validation()
     {
         if (get_count_sides() == 0) { return true; }
         else { return false; }
+    }
+    void print()
+    {
+        std::cout << get_name_figure() << std::endl;
+        if (validation() == true) { std::cout << "Правильная" << std::endl; }
+        else { std::cout << "Неправильная" << std::endl; }
+
+        std::cout << "Количество сторон: " << get_count_sides() << std::endl;
+
+        if (get_count_sides() != 0)
+        {
+            std::string result1 = "Стороны: a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c);
+            if (d > 0)
+            {
+                result1 = result1 + " d=" + std::to_string(d);
+            }
+            std::string result2 = "Углы: A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C);
+            if (D > 0)
+            {
+                result2 = result2 + " D=" + std::to_string(D);
+            }
+            std::cout << result1 << std::endl;
+            std::cout << result2 << std::endl << std::endl;
+        }
+        else { std::cout << std::endl; }
+
+
     }
 };
 
@@ -33,10 +81,12 @@ class Triangle : public Figure
 private:
     int a, b, c;
     int A, B, C;
+    int count_side = 3;
 public:
     Triangle() {}
-    Triangle(int a, int b, int c, int A, int B, int C)
+    Triangle(int a, int b, int c, int A, int B, int C): Figure(a, b, c, A, B, C) 
     {
+
         this->a = a;
         this->b = b;
         this->c = c;
@@ -56,9 +106,9 @@ public:
     }
     int get_count_sides() override
     {
-        return count_side_triangle;
+        return this->count_side;
     }
-
+    
     bool validation() override
     {
         if (get_count_sides() == 3 && (A + B + C) == 180) { return true; }
@@ -176,10 +226,10 @@ class Quadrangle : public Figure
 private:
     int a, b, c, d;
     int A, B, C, D;
-    int count_side_quadrangle = 4;
+    int count_side = 4;
 public:
     Quadrangle() {}
-    Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D)
+    Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure(a, b, c, d, A, B, C, D)
     {
         this->a = a;
         this->b = b;
@@ -202,7 +252,7 @@ public:
     }
     int get_count_sides() override
     {
-        return count_side_quadrangle;
+        return count_side;
     }
     bool validation() override
     {
@@ -363,26 +413,7 @@ public:
 
 void get_info(Figure* figure)
 {
-    std::cout << figure->get_name_figure() << std::endl;
-    if (figure->validation() == true) { std::cout << "Правильная" << std::endl; } 
-    else {                              std::cout << "Неправильная" << std::endl; }
-
-    std::cout << "Кол-во сторон: " << figure->get_count_sides() << std::endl;
-    if (figure->get_count_sides() != 0) {
-        std::cout << "Стороны: a=" << figure->get_sides_angles(0) << " b=" << figure->get_sides_angles(1) << " c=" << figure->get_sides_angles(2);
-        if (figure->get_count_sides() == 4)
-        {
-            std::cout << " d=" << figure->get_sides_angles(3);
-        }
-        std::cout << std::endl;
-        std::cout << "Углы: A=" << figure->get_sides_angles(4) << " B=" << figure->get_sides_angles(5) << " C=" << figure->get_sides_angles(6);
-        if (figure->get_count_sides() == 4)
-        {
-            std::cout << " D=" << figure->get_sides_angles(7);
-        }
-
-    }
-    std::cout << std::endl << std::endl;
+    figure->print();
 }
 
 int main()
