@@ -78,7 +78,7 @@ public:
 
 class Triangle : public Figure
 {
-private:
+protected:
     int a, b, c;
     int A, B, C;
     int count_side = 3;
@@ -119,9 +119,6 @@ public:
 
 class Right_triangle : public Triangle
 {
-private:
-    int a, b, c;
-    int A, B, C;
 public:
     Right_triangle() {}
     Right_triangle(int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
@@ -153,9 +150,6 @@ public:
 
 class Iso_triangle : public Triangle
 {
-private:
-    int a, b, c;
-    int A, B, C;
 public:
     Iso_triangle() {}
     Iso_triangle(int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
@@ -187,9 +181,6 @@ public:
 
 class Equil_triangle : public Triangle
 {
-private:
-    int a, b, c;
-    int A, B, C;
 public:
     Equil_triangle() {}
     Equil_triangle(int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
@@ -223,7 +214,7 @@ public:
 
 class Quadrangle : public Figure
 {
-private:
+protected:
     int a, b, c, d;
     int A, B, C, D;
     int count_side = 4;
@@ -264,9 +255,6 @@ public:
 
 class Rectangle : public Quadrangle
 {
-private:
-    int a, b, c, d;
-    int A, B, C, D;
 public:
     Rectangle() {}
     Rectangle(int a, int b, int c, int d, int A, int B, int C, int D) : Quadrangle(a, b, c, d, A, B, C, D)
@@ -302,9 +290,6 @@ public:
 
 class Square : public Quadrangle
 {
-private:
-    int a, b, c, d;
-    int A, B, C, D;
 public:
     Square() {}
     Square(int a, int b, int c, int d, int A, int B, int C, int D) : Quadrangle(a, b, c, d, A, B, C, D)
@@ -341,9 +326,6 @@ public:
 
 class Parallelogram : public Quadrangle
 {
-private:
-    int a, b, c, d;
-    int A, B, C, D;
 public:
     Parallelogram() {}
     Parallelogram(int a, int b, int c, int d, int A, int B, int C, int D) : Quadrangle(a, b, c, d, A, B, C, D)
@@ -377,9 +359,6 @@ public:
 
 class Rhombus : public Quadrangle
 {
-private:
-    int a, b, c, d;
-    int A, B, C, D;
 public:
     Rhombus() {}
     Rhombus(int a, int b, int c, int d, int A, int B, int C, int D) : Quadrangle(a, b, c, d, A, B, C, D)
